@@ -3,6 +3,7 @@ import './css/pure-min.css';
 import './css/side-menu.css';
 import $ from 'jquery';
 import InputCustomizado from './componentes/InputCustomizado';
+import BotaoSubmitCustomizado from './componentes/BotaoSubmitCustomizado';
 
 class App extends Component {
 
@@ -38,6 +39,7 @@ class App extends Component {
       type:'post',
       data: JSON.stringify({nome:this.state.nome,email:this.state.email,senha:this.state.senha}),
       success: function(resposta){
+        console.log("Form enviado");
         this.setState({lista:resposta});        
       }.bind(this),
       error: function(resposta){
@@ -59,6 +61,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("O render foi chamado");
     return (
       <div id="layout">
         {/*Menu toggle*/}
@@ -90,10 +93,7 @@ class App extends Component {
                 <InputCustomizado id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome} label="Nome"/>                                              
                 <InputCustomizado id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail} label="Email"/>                                              
                 <InputCustomizado id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setSenha} label="Senha"/>
-                <div className="pure-control-group">
-                  <label></label>
-                  <button type="submit" className="pure-button pure-button-primary">Gravar</button>
-                </div>
+                <BotaoSubmitCustomizado label="Gravar"/>
               </form>
 
             </div>
